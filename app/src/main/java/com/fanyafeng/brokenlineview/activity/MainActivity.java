@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.fanyafeng.brokenlineview.R;
 import com.fanyafeng.brokenlineview.BaseActivity;
+import com.fanyafeng.brokenlineview.view.BrokenLinePointBean;
 import com.fanyafeng.brokenlineview.view.BrokenLineView;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class MainActivity extends BaseActivity {
                 blvMain.setYIndex(YindexString);
                 break;
             case R.id.btnDrawShape:
-                blvMain.setShapePaints(new Point(0, 300), new Point(0, 600));
+                blvMain.setShapePaints(new BrokenLinePointBean(0, 0.3f), new BrokenLinePointBean(0, 0.6f));
                 break;
         }
     }

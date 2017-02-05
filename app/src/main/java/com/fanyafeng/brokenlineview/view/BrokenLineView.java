@@ -40,15 +40,15 @@ public class BrokenLineView extends View {
     private List<Point> points = new ArrayList<>();
     private List<String> XindexString = new ArrayList<>();
     private List<String> YindexString = new ArrayList<>();
-    private Point PointY1 = new Point(0, -1);
-    private Point PointY2 = new Point(0, -1);
+    private BrokenLinePointBean PointY1 = new BrokenLinePointBean(0, -1);
+    private BrokenLinePointBean PointY2 = new BrokenLinePointBean(0, -1);
 
     public void setPointList(List<Point> points) {
         this.points = points;
         invalidate();
     }
 
-    public void setShapePaints(Point pointY1, Point pointY2) {
+    public void setShapePaints(BrokenLinePointBean pointY1, BrokenLinePointBean pointY2) {
         this.PointY1 = pointY1;
         this.PointY2 = pointY2;
         invalidate();
@@ -136,17 +136,18 @@ public class BrokenLineView extends View {
             pWidth = width - indexWidth;
         }
         if (height == 0) {//高
+            //总高度，传入值时不能传入point，应传入百分比，y轴传入百分比，因此需要自定义bean
             height = getHeight() - indexWidth;
         }
 
         if (PointY1.y > -1 && PointY2.y > -1) {
-            canvas.drawRect(indexWidth, PointY1.y, width, PointY2.y, shapePaint);
+            canvas.drawRect(indexWidth, PointY1.y * height, width, PointY2.y * height, shapePaint);
 
             //y轴坐标1
             Paint paintY1 = new Paint(Paint.ANTI_ALIAS_FLAG);
             paintY1.setTextSize(30);
             paintY1.setAntiAlias(true);
-            Rect rectY1 = new Rect(0, (int) PointY1.y - 10, (int) indexWidth, (int) PointY1.y + 10);//折线为圈，需要减去半径
+            Rect rectY1 = new Rect(0, (int) (PointY1.y * height - 10), (int) indexWidth, (int) (PointY1.y * height + 10));//折线为圈，需要减去半径
             paintY1.setColor(Color.WHITE);
             canvas.drawRect(rectY1, paintY1);
             Paint.FontMetricsInt fontMetricsIntY1 = paintY1.getFontMetricsInt();
@@ -159,7 +160,7 @@ public class BrokenLineView extends View {
             Paint paintY2 = new Paint(Paint.ANTI_ALIAS_FLAG);
             paintY2.setTextSize(30);
             paintY2.setAntiAlias(true);
-            Rect rectY2 = new Rect(0, (int) PointY2.y - 10, (int) indexWidth, (int) PointY2.y + 10);//折线为圈，需要减去半径
+            Rect rectY2 = new Rect(0, (int) (PointY2.y * height - 10), (int) indexWidth, (int) (PointY2.y * height + 10));//折线为圈，需要减去半径
             paintY2.setColor(Color.WHITE);
             canvas.drawRect(rectY2, paintY2);
             Paint.FontMetricsInt fontMetricsIntY2 = paintY2.getFontMetricsInt();
