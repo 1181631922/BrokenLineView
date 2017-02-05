@@ -4,9 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author： fanyafeng
@@ -32,6 +36,10 @@ public class BrokenLineView extends View {
     private Paint circlePaint;
     private Paint bigCirclePaint;
     private Paint shapePaint;
+
+    private List<Point> points = new ArrayList<>();
+    private Point PointY1;
+    private Point PointY2;
 
     public BrokenLineView(Context context) {
         super(context);
@@ -81,6 +89,11 @@ public class BrokenLineView extends View {
         shapePaint.setColor(Color.GREEN);
         shapePaint.setStyle(Paint.Style.FILL);
         shapePaint.setStrokeWidth(1);
+
+        for (int i = 0; i < 6; i++) {
+            Point point = new Point(0, i * 50 + 300);
+            points.add(point);
+        }
     }
 
     @Override
@@ -99,21 +112,23 @@ public class BrokenLineView extends View {
         if (endY == 0) {
             endY = getBottom();
         }
-        if (width == 0) {
+        if (width == 0) {//宽
             width = getWidth();
             pWidth = width - indexWidth;
         }
-        if (height == 0) {
+        if (height == 0) {//高
             height = getHeight() - indexWidth;
         }
 
         //y轴第一个点
         float pointY1y = height / 3;
         float pointY1x = indexWidth;
+        PointY1 = new Point((int) pointY1x, (int) pointY1y);
         //y轴第二个点
         float pointY2y = height * 2 / 3;
         float pointY2x = indexWidth;
-        canvas.drawRect(indexWidth, pointY1y, width, pointY2y, shapePaint);
+        PointY2 = new Point((int) pointY2x, (int) pointY2y);
+        canvas.drawRect(indexWidth, PointY1.y, width, PointY2.y, shapePaint);
 
         //x轴第一个点,y轴第一个
         float x1 = pWidth / 6;
@@ -158,17 +173,17 @@ public class BrokenLineView extends View {
         canvas.drawText("26.9", rect.centerX(), baseLineX1, paintX1);
 
         //刻度
-        Paint paintX2 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintX2.setAntiAlias(true);
-        paintX2.setTextSize(30);
-        Rect rectX2 = new Rect((int) x1 - 50, (int) height, (int) x1 + 50, (int) (height + indexWidth));//折线为圈，需要减去半径
-        paintX2.setColor(Color.WHITE);
-        canvas.drawRect(rectX2, paintX2);
-        Paint.FontMetricsInt fontMetricsIntX2 = paintX2.getFontMetricsInt();
-        int baseLineX2 = (rectX2.bottom + rectX2.top - fontMetricsIntX2.bottom - fontMetricsIntX2.top) / 2;
-        paintX2.setTextAlign(Paint.Align.CENTER);
-        paintX2.setColor(Color.BLACK);
-        canvas.drawText("26.9", rectX2.centerX(), baseLineX2, paintX2);
+//        Paint paintX2 = new Paint(Paint.ANTI_ALIAS_FLAG);
+//        paintX2.setAntiAlias(true);
+//        paintX2.setTextSize(30);
+//        Rect rectX2 = new Rect((int) x1 - 50, (int) height, (int) x1 + 50, (int) (height + indexWidth));//折线为圈，需要减去半径
+//        paintX2.setColor(Color.WHITE);
+//        canvas.drawRect(rectX2, paintX2);
+//        Paint.FontMetricsInt fontMetricsIntX2 = paintX2.getFontMetricsInt();
+//        int baseLineX2 = (rectX2.bottom + rectX2.top - fontMetricsIntX2.bottom - fontMetricsIntX2.top) / 2;
+//        paintX2.setTextAlign(Paint.Align.CENTER);
+//        paintX2.setColor(Color.BLACK);
+//        canvas.drawText("26.9", rectX2.centerX(), baseLineX2, paintX2);
 
 
         canvas.drawCircle(x2, y2, 12, bigCirclePaint);
@@ -185,36 +200,85 @@ public class BrokenLineView extends View {
 
         //以上是折线图
 
-//        y轴坐标
+//        y轴坐标1
         Paint paintY1 = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintY1.setTextSize(30);
         paintY1.setAntiAlias(true);
-        Rect rectY1 = new Rect(0, (int) pointY1y - 30, (int) indexWidth, (int) pointY1y + 30);//折线为圈，需要减去半径
+        Rect rectY1 = new Rect(0, (int) PointY1.y - 30, (int) indexWidth, (int) PointY1.y + 30);//折线为圈，需要减去半径
         paintY1.setColor(Color.WHITE);
         canvas.drawRect(rectY1, paintY1);
         Paint.FontMetricsInt fontMetricsIntY1 = paintY1.getFontMetricsInt();
         int baseLineY1 = (rectY1.bottom + rectY1.top - fontMetricsIntY1.bottom - fontMetricsIntY1.top) / 2;
         paintY1.setTextAlign(Paint.Align.CENTER);
         paintY1.setColor(Color.BLACK);
-        canvas.drawText("26.9", rectY1.centerX(), baseLineY1, paintY1);
+        canvas.drawText("y1点", rectY1.centerX(), baseLineY1, paintY1);
 
-        //x轴坐标
+        //y轴坐标2
         Paint paintY2 = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintY2.setTextSize(30);
         paintY2.setAntiAlias(true);
-        Rect rectY2 = new Rect(0, (int) pointY2y - 30, (int) indexWidth, (int) pointY2y + 30);//折线为圈，需要减去半径
+        Rect rectY2 = new Rect(0, (int) PointY2.y - 30, (int) indexWidth, (int) PointY2.y + 30);//折线为圈，需要减去半径
         paintY2.setColor(Color.WHITE);
         canvas.drawRect(rectY2, paintY2);
         Paint.FontMetricsInt fontMetricsIntY2 = paintY2.getFontMetricsInt();
         int baseLineY2 = (rectY2.bottom + rectY2.top - fontMetricsIntY2.bottom - fontMetricsIntY2.top) / 2;
         paintY2.setTextAlign(Paint.Align.CENTER);
         paintY2.setColor(Color.BLACK);
-        canvas.drawText("26.9", rectY2.centerX(), baseLineY2, paintY2);
+        canvas.drawText("y2点", rectY2.centerX(), baseLineY2, paintY2);
 
 
         //x轴 轴应该最后画
         canvas.drawLine(indexWidth, height, width, height, XPaint);
         //y轴
         canvas.drawLine(indexWidth, 0, indexWidth, height, YPaint);
+
+
+        int size = points.size();
+        //size+1份，每份长度
+        float eachLength = pWidth / (size + 1);
+
+        for (int i = 0; i < size; i++) {
+            float pointX1 = indexWidth + eachLength * (i + 1);
+            float pointY1 = points.get(i).y;
+
+            if (i != size - 1) {
+                float pointX2 = indexWidth + eachLength * (i + 2);
+                float pointY2 = points.get(i + 1).y;
+
+                canvas.drawLine(pointX1, pointY1, pointX2, pointY2, pointPaint);
+
+                canvas.drawCircle(pointX2, pointY2, 12, bigCirclePaint);
+                canvas.drawCircle(pointX2, pointY2, 10, circlePaint);
+            }
+
+            canvas.drawCircle(pointX1, pointY1, 12, bigCirclePaint);
+            canvas.drawCircle(pointX1, pointY1, 10, circlePaint);
+
+            //折点标字
+            Paint paintBroken = new Paint(Paint.ANTI_ALIAS_FLAG);
+            paintBroken.setAntiAlias(true);
+            paintBroken.setTextSize(30);
+            Rect rectBroken = new Rect((int) pointX1 - 50, (int) pointY1 - 70, (int) pointX1 + 50, (int) pointY1 - 20);//折线为圈，需要减去半径
+            paintBroken.setColor(Color.TRANSPARENT);
+            canvas.drawRect(rectBroken, paintBroken);
+            Paint.FontMetricsInt fontMetricsIntBroken = paintBroken.getFontMetricsInt();
+            int baseLineBroken = (rectBroken.bottom + rectBroken.top - fontMetricsIntBroken.bottom - fontMetricsIntBroken.top) / 2;
+            paintBroken.setTextAlign(Paint.Align.CENTER);
+            paintBroken.setColor(Color.BLACK);
+            canvas.drawText(String.valueOf(points.get(i).y), rectBroken.centerX(), baseLineBroken, paintBroken);
+
+            //刻度
+            Paint paintBrokenX = new Paint(Paint.ANTI_ALIAS_FLAG);
+            paintBrokenX.setAntiAlias(true);
+            paintBrokenX.setTextSize(30);
+            Rect rectBrokenX = new Rect((int) pointX1 - 50, (int) height, (int) pointX1 + 50, (int) (height + indexWidth));//折线为圈，需要减去半径
+            paintBrokenX.setColor(Color.TRANSPARENT);
+            canvas.drawRect(rectBrokenX, paintBrokenX);
+            Paint.FontMetricsInt fontMetricsIntBrokenX = paintBrokenX.getFontMetricsInt();
+            int baseLineBrokenX = (rectBrokenX.bottom + rectBrokenX.top - fontMetricsIntBrokenX.bottom - fontMetricsIntBrokenX.top) / 2;
+            paintBrokenX.setTextAlign(Paint.Align.CENTER);
+            paintBrokenX.setColor(Color.BLACK);
+            canvas.drawText(String.valueOf(pointX1).substring(0, 6), rectBrokenX.centerX(), baseLineBrokenX, paintBrokenX);
+        }
     }
 }

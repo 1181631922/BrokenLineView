@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
 
     //初始化UI控件
     private void initView() {
-
+        String string = "<font size=\"3\">下图为要实现的设计图，点击后为初步实现的效果图。</font>";
     }
 
     //初始化数据
