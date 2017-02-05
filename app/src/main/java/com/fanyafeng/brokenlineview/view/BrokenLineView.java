@@ -139,14 +139,6 @@ public class BrokenLineView extends View {
             height = getHeight() - indexWidth;
         }
 
-//        //y轴第一个点
-//        float pointY1y = height / 3;
-//        float pointY1x = indexWidth;
-//        PointY1 = new Point((int) pointY1x, (int) pointY1y);
-//        //y轴第二个点
-//        float pointY2y = height * 2 / 3;
-//        float pointY2x = indexWidth;
-//        PointY2 = new Point((int) pointY2x, (int) pointY2y);
         if (PointY1.y > -1 && PointY2.y > -1) {
             canvas.drawRect(indexWidth, PointY1.y, width, PointY2.y, shapePaint);
 
@@ -176,75 +168,6 @@ public class BrokenLineView extends View {
             paintY2.setColor(Color.BLACK);
             canvas.drawText("y2点", rectY2.centerX(), baseLineY2, paintY2);
         }
-
-//        //x轴第一个点,y轴第一个
-//        float x1 = pWidth / 6;
-//        float y1 = height / 6;
-//
-//        //x轴第二个点
-//        float x2 = pWidth / 3;
-//        float y2 = height / 3;
-//
-//        //x轴第三个点
-//        float x3 = pWidth / 2;
-//        float y3 = height / 2;
-//
-//        //x轴第四个点
-//        float x4 = 2 * pWidth / 3;
-//        float y4 = height / 3;
-//
-//        //x轴第五个点
-//        float x5 = 5 * pWidth / 6;
-//        float y5 = 5 * height / 6;
-//
-//        //以下是折线图
-//        canvas.drawLine(x1, y1, x2, y2, pointPaint);
-//        canvas.drawLine(x2, y2, x3, y3, pointPaint);
-//        canvas.drawLine(x3, y3, x4, y4, pointPaint);
-//        canvas.drawLine(x4, y4, x5, y5, pointPaint);
-//
-//        canvas.drawCircle(x1, y1, 12, bigCirclePaint);
-//        canvas.drawCircle(x1, y1, 10, circlePaint);
-//
-//        //折点标字
-//        Paint paintX1 = new Paint(Paint.ANTI_ALIAS_FLAG);
-//        paintX1.setAntiAlias(true);
-//        paintX1.setTextSize(30);
-//        Rect rect = new Rect((int) x1 - 50, (int) y1 - 70, (int) x1 + 50, (int) y1 - 20);//折线为圈，需要减去半径
-//        paintX1.setColor(Color.WHITE);
-//        canvas.drawRect(rect, paintX1);
-//        Paint.FontMetricsInt fontMetricsIntX1 = paintX1.getFontMetricsInt();
-//        int baseLineX1 = (rect.bottom + rect.top - fontMetricsIntX1.bottom - fontMetricsIntX1.top) / 2;
-//        paintX1.setTextAlign(Paint.Align.CENTER);
-//        paintX1.setColor(Color.BLACK);
-//        canvas.drawText("26.9", rect.centerX(), baseLineX1, paintX1);
-        //刻度
-//        Paint paintX2 = new Paint(Paint.ANTI_ALIAS_FLAG);
-//        paintX2.setAntiAlias(true);
-//        paintX2.setTextSize(30);
-//        Rect rectX2 = new Rect((int) x1 - 50, (int) height, (int) x1 + 50, (int) (height + indexWidth));//折线为圈，需要减去半径
-//        paintX2.setColor(Color.WHITE);
-//        canvas.drawRect(rectX2, paintX2);
-//        Paint.FontMetricsInt fontMetricsIntX2 = paintX2.getFontMetricsInt();
-//        int baseLineX2 = (rectX2.bottom + rectX2.top - fontMetricsIntX2.bottom - fontMetricsIntX2.top) / 2;
-//        paintX2.setTextAlign(Paint.Align.CENTER);
-//        paintX2.setColor(Color.BLACK);
-//        canvas.drawText("26.9", rectX2.centerX(), baseLineX2, paintX2);
-
-
-//        canvas.drawCircle(x2, y2, 12, bigCirclePaint);
-//        canvas.drawCircle(x2, y2, 10, circlePaint);
-//
-//        canvas.drawCircle(x3, y3, 12, bigCirclePaint);
-//        canvas.drawCircle(x3, y3, 10, circlePaint);
-//
-//        canvas.drawCircle(x4, y4, 12, bigCirclePaint);
-//        canvas.drawCircle(x4, y4, 10, circlePaint);
-//
-//        canvas.drawCircle(x5, y5, 12, bigCirclePaint);
-//        canvas.drawCircle(x5, y5, 10, circlePaint);
-
-        //以上是折线图
 
         int size = points.size();
         if (size != 0) {
@@ -311,7 +234,6 @@ public class BrokenLineView extends View {
         //y轴
         canvas.drawLine(indexWidth, 0, indexWidth, height, YPaint);
 
-//        invalidate();
     }
 
 }
