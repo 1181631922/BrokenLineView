@@ -19,7 +19,7 @@ import java.util.List;
 //需要搭配Baseactivity，这里默认为Baseactivity,并且默认BaseActivity为包名的根目录
 public class MainActivity extends BaseActivity {
     private BrokenLineView blvMain;
-    private List<Point> points = new ArrayList<>();
+    private List<BrokenLinePointBean> points = new ArrayList<>();
     private List<String> XindexString = new ArrayList<>();
     private List<String> YindexString = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
     //初始化数据
     private void initData() {
         for (int i = 0; i < 6; i++) {
-            Point point = new Point(0, i * 140 + 120);
+            BrokenLinePointBean point = new BrokenLinePointBean(0, (float) (i * 0.15 + 0.1));
             points.add(point);
             XindexString.add("第" + i + "个");
             YindexString.add("第" + i + "个");

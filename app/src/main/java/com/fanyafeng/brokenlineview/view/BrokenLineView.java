@@ -37,13 +37,13 @@ public class BrokenLineView extends View {
     private Paint bigCirclePaint;
     private Paint shapePaint;
 
-    private List<Point> points = new ArrayList<>();
+    private List<BrokenLinePointBean> points = new ArrayList<>();
     private List<String> XindexString = new ArrayList<>();
     private List<String> YindexString = new ArrayList<>();
     private BrokenLinePointBean PointY1 = new BrokenLinePointBean(0, -1);
     private BrokenLinePointBean PointY2 = new BrokenLinePointBean(0, -1);
 
-    public void setPointList(List<Point> points) {
+    public void setPointList(List<BrokenLinePointBean> points) {
         this.points = points;
         invalidate();
     }
@@ -177,11 +177,11 @@ public class BrokenLineView extends View {
 
             for (int i = 0; i < size; i++) {
                 float pointX1 = indexWidth + eachLength * (i + 1);
-                float pointY1 = points.get(i).y;
+                float pointY1 = points.get(i).y * height;
 
                 if (i != size - 1) {
                     float pointX2 = indexWidth + eachLength * (i + 2);
-                    float pointY2 = points.get(i + 1).y;
+                    float pointY2 = points.get(i + 1).y * height;
                     canvas.drawLine(pointX1, pointY1, pointX2, pointY2, pointPaint);
 
                     canvas.drawCircle(pointX2, pointY2, 12, bigCirclePaint);
