@@ -230,11 +230,32 @@ public class BrokenLineView extends View {
                 canvas.drawText(YindexString.size() > 0 ? YindexString.get(i) : String.valueOf(i + 1), rectBrokenY.centerX(), baseLineBrokenY, paintBrokenY);
             }
         }
+
         //x轴 轴应该最后画
         canvas.drawLine(indexWidth, height, width, height, XPaint);
+        //x轴箭头
+        canvas.drawLine(indexWidth, 0, indexWidth + 12, 24, XPaint);
+        canvas.drawLine(indexWidth, 0, indexWidth - 12, 24, XPaint);
         //y轴
         canvas.drawLine(indexWidth, 0, indexWidth, height, YPaint);
+        //y轴箭头
+        canvas.drawLine(width - 24, height - 12, width, height, YPaint);
+        canvas.drawLine(width - 24, height + 12, width, height, YPaint);
+        //原点
+//        canvas.drawCircle(indexWidth, height, 12, bigCirclePaint);
 
+
+        Paint paintBrokenO = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintBrokenO.setTextSize(30);
+        paintBrokenO.setAntiAlias(true);
+        Rect rectBrokenO = new Rect(0, (int) height, (int) indexWidth, (int) (height + indexWidth));//折线为圈，需要减去半径
+        paintBrokenO.setColor(Color.WHITE);
+        canvas.drawRect(rectBrokenO, paintBrokenO);
+        Paint.FontMetricsInt fontMetricsIntBrokenO = paintBrokenO.getFontMetricsInt();
+        int baseLineBrokenO = (rectBrokenO.bottom + rectBrokenO.top - fontMetricsIntBrokenO.bottom - fontMetricsIntBrokenO.top) / 2;
+        paintBrokenO.setTextAlign(Paint.Align.CENTER);
+        paintBrokenO.setColor(Color.BLACK);
+        canvas.drawText("原点", rectBrokenO.centerX(), baseLineBrokenO, paintBrokenO);
     }
 
 }
