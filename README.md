@@ -9,7 +9,7 @@
 
 
 # 新增功能
-新增：定位折线点的x，y虚线，原点标注
+新增：定位折线点的x，y虚线；原点标注；x轴y轴箭头
 
 ### 1.Gif效果图
 ![gif效果图](https://github.com/1181631922/BrokenLineView/blob/master/img/brokenview.gif)
