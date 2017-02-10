@@ -8,7 +8,7 @@
 * setYIndex(List<String> YindexString)<br>
 
 
-###新增功能
+# 新增功能
 新增：定位折线点的x，y虚线，原点标注
 
 ### 1.Gif效果图
