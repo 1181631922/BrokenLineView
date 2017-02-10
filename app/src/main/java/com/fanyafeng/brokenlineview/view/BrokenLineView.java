@@ -3,7 +3,10 @@ package com.fanyafeng.brokenlineview.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathEffect;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -36,6 +39,7 @@ public class BrokenLineView extends View {
     private Paint circlePaint;
     private Paint bigCirclePaint;
     private Paint shapePaint;
+    private Paint effectPaint;
 
     private List<BrokenLinePointBean> points = new ArrayList<>();
     private List<String> XindexString = new ArrayList<>();
@@ -113,6 +117,14 @@ public class BrokenLineView extends View {
         shapePaint.setStyle(Paint.Style.FILL);
         shapePaint.setStrokeWidth(1);
 
+        effectPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        effectPaint.setAntiAlias(true);
+        effectPaint.setColor(Color.BLUE);
+        effectPaint.setStyle(Paint.Style.STROKE);
+        effectPaint.setStrokeWidth(1);
+        PathEffect effects = new DashPathEffect(new float[]{5, 5, 5, 5}, 1);
+        effectPaint.setPathEffect(effects);
+
     }
 
     @Override
@@ -179,9 +191,20 @@ public class BrokenLineView extends View {
                 float pointX1 = indexWidth + eachLength * (i + 1);
                 float pointY1 = points.get(i).y * height;
 
+                Path pathY=new Path();
+                pathY.moveTo(pointX1,pointY1);
+                pathY.lineTo(pointX1,height);
+                canvas.drawPath(pathY,effectPaint);
+
+                Path paytX=new Path();
+                paytX.moveTo(pointX1,pointY1);
+                paytX.lineTo(indexWidth,pointY1);
+                canvas.drawPath(paytX,effectPaint);
+
                 if (i != size - 1) {
                     float pointX2 = indexWidth + eachLength * (i + 2);
                     float pointY2 = points.get(i + 1).y * height;
+
                     canvas.drawLine(pointX1, pointY1, pointX2, pointY2, pointPaint);
 
                     canvas.drawCircle(pointX2, pointY2, 12, bigCirclePaint);
