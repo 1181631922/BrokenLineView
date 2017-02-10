@@ -241,14 +241,11 @@ public class BrokenLineView extends View {
         //y轴箭头
         canvas.drawLine(width - 24, height - 12, width, height, YPaint);
         canvas.drawLine(width - 24, height + 12, width, height, YPaint);
-        //原点
-//        canvas.drawCircle(indexWidth, height, 12, bigCirclePaint);
-
 
         Paint paintBrokenO = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintBrokenO.setTextSize(30);
         paintBrokenO.setAntiAlias(true);
-        Rect rectBrokenO = new Rect(0, (int) height, (int) indexWidth, (int) (height + indexWidth));//折线为圈，需要减去半径
+        Rect rectBrokenO = new Rect(30, (int) height, (int) indexWidth, (int) (height + 70));//折线为圈，需要减去半径
         paintBrokenO.setColor(Color.WHITE);
         canvas.drawRect(rectBrokenO, paintBrokenO);
         Paint.FontMetricsInt fontMetricsIntBrokenO = paintBrokenO.getFontMetricsInt();
@@ -256,6 +253,9 @@ public class BrokenLineView extends View {
         paintBrokenO.setTextAlign(Paint.Align.CENTER);
         paintBrokenO.setColor(Color.BLACK);
         canvas.drawText("原点", rectBrokenO.centerX(), baseLineBrokenO, paintBrokenO);
+
+        //原点
+        canvas.drawCircle(indexWidth, height, 12, bigCirclePaint);
     }
 
 }
