@@ -7,6 +7,8 @@
 * setXIndex(List<String> XindexString)<br>
 * setYIndex(List<String> YindexString)<br>
 
+新增：定位折线点的x，y虚线
+
 ### 1.Gif效果图
 ![gif效果图](https://github.com/1181631922/BrokenLineView/blob/master/img/brokenview.gif)
 
@@ -115,3 +117,4 @@ if (PointY1.y > -1 && PointY2.y > -1) {
 ### 4.简单折线图
 ![图解](https://github.com/1181631922/BrokenLineView/blob/master/img/979DF617-A1E2-41AC-AC5C-89F9366674D3.png)
 ![图解2](https://github.com/1181631922/BrokenLineView/blob/master/img/F118EBBD-8C04-46D3-A453-92CB981E9B75.png)
+![图解3](https://github.com/1181631922/BrokenLineView/blob/master/img/1154CB36-6C9C-454A-9BFF-F0C1B9E9331D.png)
