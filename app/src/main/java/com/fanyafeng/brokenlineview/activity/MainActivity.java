@@ -78,16 +78,16 @@ public class MainActivity extends BaseActivity {
         Log.d("max", "最大y值:" + maxY);
         Log.d("min", "最小y值:" + minY);
 
-        int YIndexLength = maxY + minY;
+        int YIndexLength = maxY - minY + minY;
 
-        brokenLinePointBeanY1 = new BrokenLinePointBean(0, 1 - (float) pointY1.y / (float) YIndexLength);
-        brokenLinePointBeanY2 = new BrokenLinePointBean(0, 1 - (float) pointY2.y / (float) YIndexLength);
+        brokenLinePointBeanY1 = new BrokenLinePointBean(0, 1 - (float) (pointY1.y - minY / 2) / (float) YIndexLength);
+        brokenLinePointBeanY2 = new BrokenLinePointBean(0, 1 - (float) (pointY2.y - minY / 2) / (float) YIndexLength);
 
         for (int i = 0; i < tempPointList.size(); i++) {
             Point point = tempPointList.get(i);
             Log.d("point", "pointy:" + point.y);
             Log.d("point", "比例：" + (float) point.y / (float) YIndexLength);
-            BrokenLinePointBean brokenLinePointBean = new BrokenLinePointBean(0, 1 - (float) point.y / (float) YIndexLength);
+            BrokenLinePointBean brokenLinePointBean = new BrokenLinePointBean(0, 1 - (float) (point.y - minY / 2) / (float) YIndexLength);
             points.add(brokenLinePointBean);
         }
 

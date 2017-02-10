@@ -194,7 +194,7 @@ public class BrokenLineView extends View {
                 Paint paintBroken = new Paint(Paint.ANTI_ALIAS_FLAG);
                 paintBroken.setAntiAlias(true);
                 paintBroken.setTextSize(30);
-                Rect rectBroken = new Rect((int) pointX1 - 50, (int) pointY1 - 70, (int) pointX1 + 50, (int) pointY1 - 20);//折线为圈，需要减去半径
+                Rect rectBroken = new Rect((int) pointX1 - 50, (int) pointY1 - 50, (int) pointX1 + 50, (int) pointY1 - 10);//折线为圈，需要减去半径
                 paintBroken.setColor(Color.TRANSPARENT);
                 canvas.drawRect(rectBroken, paintBroken);
                 Paint.FontMetricsInt fontMetricsIntBroken = paintBroken.getFontMetricsInt();
