@@ -191,15 +191,17 @@ public class BrokenLineView extends View {
                 float pointX1 = indexWidth + eachLength * (i + 1);
                 float pointY1 = points.get(i).y * height;
 
-                Path pathY=new Path();
-                pathY.moveTo(pointX1,pointY1);
-                pathY.lineTo(pointX1,height);
-                canvas.drawPath(pathY,effectPaint);
+                Path pathY = new Path();
+                pathY.moveTo(pointX1, pointY1);
+                pathY.lineTo(pointX1, height);
+                canvas.drawPath(pathY, effectPaint);
 
-                Path paytX=new Path();
-                paytX.moveTo(pointX1,pointY1);
-                paytX.lineTo(indexWidth,pointY1);
-                canvas.drawPath(paytX,effectPaint);
+                Path paytX = new Path();
+                paytX.moveTo(pointX1, pointY1);
+                paytX.lineTo(indexWidth, pointY1);
+                canvas.drawPath(paytX, effectPaint);
+
+                canvas.drawCircle(pointX1, height, 12, XPaint);
 
                 if (i != size - 1) {
                     float pointX2 = indexWidth + eachLength * (i + 2);
@@ -217,7 +219,7 @@ public class BrokenLineView extends View {
                 Paint paintBroken = new Paint(Paint.ANTI_ALIAS_FLAG);
                 paintBroken.setAntiAlias(true);
                 paintBroken.setTextSize(30);
-                Rect rectBroken = new Rect((int) pointX1 - 50, (int) pointY1 - 50, (int) pointX1 + 50, (int) pointY1 - 10);//折线为圈，需要减去半径
+                Rect rectBroken = new Rect((int) pointX1 - 50, pointY1 > 50 ? (int) pointY1 - 50 : (int) pointY1 + 10, (int) pointX1 + 50, pointY1>50?(int) pointY1 - 10:(int) pointY1 + 50);//折线为圈，需要减去半径
                 paintBroken.setColor(Color.TRANSPARENT);
                 canvas.drawRect(rectBroken, paintBroken);
                 Paint.FontMetricsInt fontMetricsIntBroken = paintBroken.getFontMetricsInt();
@@ -278,7 +280,7 @@ public class BrokenLineView extends View {
         canvas.drawText("原点", rectBrokenO.centerX(), baseLineBrokenO, paintBrokenO);
 
         //原点
-        canvas.drawCircle(indexWidth, height, 12, bigCirclePaint);
+        canvas.drawCircle(indexWidth, height, 12, XPaint);
     }
 
 }
