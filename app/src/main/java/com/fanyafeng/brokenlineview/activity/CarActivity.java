@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
@@ -181,105 +182,87 @@ public class CarActivity extends BaseActivity {
                 moveLeftAnimator.setDuration(500);
                 moveLeftAnimator.start();
 
-                tvCarTitle.setVisibility(View.VISIBLE);
-
-                ScaleAnimation scaleAnimation1 = new ScaleAnimation(0.0f, 0.4f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleAnimation1.setDuration(100);
-                scaleAnimation1.setStartOffset(1500);
-                scaleAnimation1.setFillAfter(true);
-                tvCarTitle.startAnimation(scaleAnimation1);
-
-                ScaleAnimation scaleAnimation2 = new ScaleAnimation(0.0f, 0.6f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleAnimation2.setDuration(200);
-                scaleAnimation2.setStartOffset(1500);
-                scaleAnimation2.setFillAfter(true);
-                tvCarTitle.startAnimation(scaleAnimation2);
-
-                ScaleAnimation scaleAnimation3 = new ScaleAnimation(0.0f, 0.85f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleAnimation3.setDuration(300);
-                scaleAnimation3.setStartOffset(1500);
-                scaleAnimation3.setFillAfter(true);
-                tvCarTitle.startAnimation(scaleAnimation3);
-
-                ScaleAnimation scaleAnimation4 = new ScaleAnimation(0.0f, 0.95f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleAnimation4.setDuration(400);
-                scaleAnimation4.setStartOffset(1500);
-                scaleAnimation4.setFillAfter(true);
-                tvCarTitle.startAnimation(scaleAnimation4);
-
-                ScaleAnimation scaleAnimation5 = new ScaleAnimation(0.0f, 1f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleAnimation5.setDuration(500);
-                scaleAnimation5.setStartOffset(1500);
-                scaleAnimation5.setFillAfter(true);
-                tvCarTitle.startAnimation(scaleAnimation5);
-
                 ObjectAnimator rotateAnimator1 = ObjectAnimator.ofFloat(ivCarIcon, "rotation", 0f, -360f * 2);
                 rotateAnimator1.setDuration(1000);
                 rotateAnimator1.start();
 
-                layoutCarBackground.setVisibility(View.VISIBLE);
+                tvCarTitle.setVisibility(View.VISIBLE);
 
                 ScaleAnimation scaleBackgroundAnimation1 = new ScaleAnimation(0.0f, 0.4f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleBackgroundAnimation1.setDuration(500);
-                scaleBackgroundAnimation1.setStartOffset(1100);
+                scaleBackgroundAnimation1.setDuration(30);
+                scaleBackgroundAnimation1.setStartOffset(1000);
                 scaleBackgroundAnimation1.setFillAfter(true);
 
                 layoutCarBackground.startAnimation(scaleBackgroundAnimation1);
+                tvCarTitle.startAnimation(scaleBackgroundAnimation1);
 
                 ScaleAnimation scaleBackgroundAnimation2 = new ScaleAnimation(0.0f, 0.65f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleBackgroundAnimation2.setDuration(600);
-                scaleBackgroundAnimation2.setStartOffset(1100);
+                scaleBackgroundAnimation2.setDuration(60);
+                scaleBackgroundAnimation2.setStartOffset(1000);
                 scaleBackgroundAnimation2.setFillAfter(true);
 
                 layoutCarBackground.startAnimation(scaleBackgroundAnimation2);
+                tvCarTitle.startAnimation(scaleBackgroundAnimation2);
 
                 ScaleAnimation scaleBackgroundAnimation3 = new ScaleAnimation(0.0f, 0.85f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleBackgroundAnimation3.setDuration(700);
-                scaleBackgroundAnimation3.setStartOffset(1100);
+                scaleBackgroundAnimation3.setDuration(90);
+                scaleBackgroundAnimation3.setStartOffset(1000);
                 scaleBackgroundAnimation3.setFillAfter(true);
 
                 layoutCarBackground.startAnimation(scaleBackgroundAnimation3);
+                tvCarTitle.startAnimation(scaleBackgroundAnimation3);
 
                 ScaleAnimation scaleBackgroundAnimation4 = new ScaleAnimation(0.0f, 0.95f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleBackgroundAnimation4.setDuration(800);
-                scaleBackgroundAnimation4.setStartOffset(1100);
+                scaleBackgroundAnimation4.setDuration(120);
+                scaleBackgroundAnimation4.setStartOffset(1000);
                 scaleBackgroundAnimation4.setFillAfter(true);
 
                 layoutCarBackground.startAnimation(scaleBackgroundAnimation4);
+                tvCarTitle.startAnimation(scaleBackgroundAnimation4);
 
                 ScaleAnimation scaleBackgroundAnimation5 = new ScaleAnimation(0.0f, 1f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleBackgroundAnimation5.setDuration(900);
-                scaleBackgroundAnimation5.setStartOffset(1100);
+                scaleBackgroundAnimation5.setDuration(150);
+                scaleBackgroundAnimation5.setStartOffset(1000);
                 scaleBackgroundAnimation5.setFillAfter(true);
 
-                layoutCarBackground.startAnimation(scaleBackgroundAnimation5);
+                AlphaAnimation alphaAnimation1 = new AlphaAnimation(0f, 1f);
+                alphaAnimation1.setDuration(150);
+                alphaAnimation1.setFillAfter(true);
+                alphaAnimation1.setStartOffset(1000);
 
+                AnimationSet animationSet = new AnimationSet(true);
+                animationSet.addAnimation(alphaAnimation1);
+                animationSet.addAnimation(scaleBackgroundAnimation5);
+                layoutCarBackground.startAnimation(animationSet);
+                tvCarTitle.startAnimation(animationSet);
+                layoutCarBackground.setVisibility(View.VISIBLE);
 
-//                AlphaAnimation alphaAnimation = new AlphaAnimation(0f, 1f);
-//                alphaAnimation.setDuration(200);
-//                alphaAnimation.setFillAfter(true);
-//                alphaAnimation.setFillBefore(false);
-//                alphaAnimation.setStartOffset(500);
-//                layoutCarBackground.startAnimation(alphaAnimation);
 
                 break;
 
             case R.id.btnEnd:
+                AlphaAnimation alphaAnimation2 = new AlphaAnimation(1f, 0f);
+                alphaAnimation2.setDuration(150);
+                alphaAnimation2.setFillAfter(true);
+                alphaAnimation2.setFillBefore(false);
+
                 ScaleAnimation scaleEndAnimation = new ScaleAnimation(1f, 0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
                 scaleEndAnimation.setDuration(150);
                 scaleEndAnimation.setFillAfter(true);
-                tvCarTitle.startAnimation(scaleEndAnimation);
-                tvCarTitle.setVisibility(View.GONE);
 
-                ScaleAnimation scaleBackGroundEndAnimation = new ScaleAnimation(1f, 0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 1f);
-                scaleBackGroundEndAnimation.setDuration(150);
-                scaleBackGroundEndAnimation.setFillAfter(true);
-                layoutCarBackground.startAnimation(scaleBackGroundEndAnimation);
+                AnimationSet animationSet1 = new AnimationSet(true);
+                animationSet1.addAnimation(alphaAnimation2);
+                animationSet1.addAnimation(scaleEndAnimation);
+                tvCarTitle.startAnimation(animationSet1);
+                layoutCarBackground.startAnimation(animationSet1);
+
+                tvCarTitle.setVisibility(View.GONE);
                 layoutCarBackground.setVisibility(View.GONE);
+
                 break;
 
             case R.id.btnEnd2:
-                ObjectAnimator moveRightAnimator = ObjectAnimator.ofFloat(ivCarIcon, "translationX", 0, DpPxConvert.dip2px(this, 40));
+                ObjectAnimator moveRightAnimator = ObjectAnimator.ofFloat(ivCarIcon, "translationX", -DpPxConvert.dip2px(this, 16), DpPxConvert.dip2px(this, 40));
                 moveRightAnimator.setDuration(500);
                 moveRightAnimator.start();
 

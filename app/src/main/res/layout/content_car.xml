@@ -34,7 +34,7 @@
                 android:id="@+id/tvCarTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginRight="16dp"
+                android:paddingRight="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/ivCarIcon"
                 android:gravity="center_vertical"
