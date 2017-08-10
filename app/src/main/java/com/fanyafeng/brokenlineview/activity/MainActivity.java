@@ -1,5 +1,6 @@
 package com.fanyafeng.brokenlineview.activity;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -111,6 +112,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btnDrawShape:
                 blvMain.setShapePaints(brokenLinePointBeanY1, brokenLinePointBeanY2);
+                break;
+            case R.id.btnCar:
+                startActivity(new Intent(this,CarActivity.class));
                 break;
         }
     }

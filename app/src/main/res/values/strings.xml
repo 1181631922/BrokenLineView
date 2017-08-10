@@ -2,4 +2,5 @@
     <string name="app_name">BrokenLineView</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">自定义折线图</string>
+    <string name="title_activity_car">CarActivity</string>
 </resources>
